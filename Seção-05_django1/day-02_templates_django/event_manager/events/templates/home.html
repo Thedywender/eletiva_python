@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}
+        {{ company }}
+    {% endblock %}
+
+    {% block content %}
+        <h1> Eventos {{ company }} </h1>
+        {% for event in events %}
+        <a href="{% url 'details-page' event.id %}">
+            {% if event.image %}
+            <img src="{% static event.image.url %}" alt="Imagem sobre o evento" height="50">
+            {% endif %}
+                <h3> {{ event.title }}</h3>
+                <p> {{ event.date }} </p>
+                <p> {{ event.location }} </p>
+        </a>
+        {% empty %}
+            <p> Não há eventos cadastrados! </p>
+        {% endfor %}
+    {% endblock %}
