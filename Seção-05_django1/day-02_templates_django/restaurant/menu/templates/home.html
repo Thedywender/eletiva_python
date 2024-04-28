@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+    {% block title %}
+        {{ Restaurant }}
+    {% endblock %}
+
+    {% block content %}
+        <h1> Receitas </h1>
+            <h2>{{ Restaurant }}</h2>
+            <h3>Receitas</h3>
+            {% for recipe in recipes %}
+            <a href="{% url 'recipe-details' recipe.id %}">
+                <h4>{{ recipe.name }}</h4>
+                    <p>{{ recipe.ingredients }}</p>
+                    <p>{{ recipe.instructions }}</p>
+            </a>    
+            {% empty %}
+                <p>Nenhuma receita cadastrada</p>
+            {% endfor %}
+    {% endblock %}
